@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoPCD.Models;
 
 namespace ProjetoPCD.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211223142659_Update Candidtura")]
+    partial class UpdateCandidtura
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,9 +30,6 @@ namespace ProjetoPCD.Migrations
 
                     b.Property<int?>("Cursoid_Curso")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("DataCandidatura")
-                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Empresaid_Empresa")
                         .HasColumnType("int");
@@ -169,9 +168,6 @@ namespace ProjetoPCD.Migrations
                     b.Property<int?>("Empresaid_Empresa")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeEmpresa")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Salario")
                         .HasColumnType("decimal(18,2)");
 
@@ -193,7 +189,7 @@ namespace ProjetoPCD.Migrations
                         .HasForeignKey("Empresaid_Empresa");
 
                     b.HasOne("ProjetoPCD.Models.Usuario", "Usuario")
-                        .WithMany("Candidaturas")
+                        .WithMany()
                         .HasForeignKey("Usuarioid_Usuario");
 
                     b.HasOne("ProjetoPCD.Models.Vaga", "Vaga")
@@ -216,11 +212,6 @@ namespace ProjetoPCD.Migrations
                         .HasForeignKey("Empresaid_Empresa");
 
                     b.Navigation("Empresa");
-                });
-
-            modelBuilder.Entity("ProjetoPCD.Models.Usuario", b =>
-                {
-                    b.Navigation("Candidaturas");
                 });
 #pragma warning restore 612, 618
         }

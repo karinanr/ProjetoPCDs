@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoPCD.Models;
 
 namespace ProjetoPCD.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211223143425_updte candidatura3")]
+    partial class updtecandidatura3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,6 +126,9 @@ namespace ProjetoPCD.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("Candidaturaid_Candidatura")
+                        .HasColumnType("int");
+
                     b.Property<string>("Cidade")
                         .HasColumnType("nvarchar(max)");
 
@@ -143,6 +148,8 @@ namespace ProjetoPCD.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id_Usuario");
+
+                    b.HasIndex("Candidaturaid_Candidatura");
 
                     b.ToTable("Usuarios");
                 });
@@ -169,9 +176,6 @@ namespace ProjetoPCD.Migrations
                     b.Property<int?>("Empresaid_Empresa")
                         .HasColumnType("int");
 
-                    b.Property<string>("NomeEmpresa")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Salario")
                         .HasColumnType("decimal(18,2)");
 
@@ -193,7 +197,7 @@ namespace ProjetoPCD.Migrations
                         .HasForeignKey("Empresaid_Empresa");
 
                     b.HasOne("ProjetoPCD.Models.Usuario", "Usuario")
-                        .WithMany("Candidaturas")
+                        .WithMany()
                         .HasForeignKey("Usuarioid_Usuario");
 
                     b.HasOne("ProjetoPCD.Models.Vaga", "Vaga")
@@ -209,6 +213,13 @@ namespace ProjetoPCD.Migrations
                     b.Navigation("Vaga");
                 });
 
+            modelBuilder.Entity("ProjetoPCD.Models.Usuario", b =>
+                {
+                    b.HasOne("ProjetoPCD.Models.Candidatura", null)
+                        .WithMany("Usuarios")
+                        .HasForeignKey("Candidaturaid_Candidatura");
+                });
+
             modelBuilder.Entity("ProjetoPCD.Models.Vaga", b =>
                 {
                     b.HasOne("ProjetoPCD.Models.Empresa", "Empresa")
@@ -218,9 +229,9 @@ namespace ProjetoPCD.Migrations
                     b.Navigation("Empresa");
                 });
 
-            modelBuilder.Entity("ProjetoPCD.Models.Usuario", b =>
+            modelBuilder.Entity("ProjetoPCD.Models.Candidatura", b =>
                 {
-                    b.Navigation("Candidaturas");
+                    b.Navigation("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

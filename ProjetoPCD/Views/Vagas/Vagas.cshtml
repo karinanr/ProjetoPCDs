@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ProjetoPCD.Models.Vaga>  
+
+@{
+    ViewData["Title"] = "Vagas";
+}
+
+@{     
+    foreach(var item in Model)
+    {
+    <div class="container ">
+        <div class="container col-10 border border-dark m-5 p-5">
+            <h1>@item.Cargo</h1>
+            <h3>@item.Empresa</h3>
+            <p>@item.Descricao</p>
+            <p>@item.Benefícios</p>
+            <h3>@item.CargaHoraria</h3>
+            <p>@item.Salario</p>
+            <button>Candidatar</button> @*botão que supostamente vai jogar todas as informacoes de vaga e candidato para o banco CANDIDATURAS*@
+        </div>
+    </div>
+    }
+ }

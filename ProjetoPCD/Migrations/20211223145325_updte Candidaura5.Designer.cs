@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoPCD.Models;
 
 namespace ProjetoPCD.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20211223145325_updte Candidaura5")]
+    partial class updteCandidaura5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,9 +170,6 @@ namespace ProjetoPCD.Migrations
 
                     b.Property<int?>("Empresaid_Empresa")
                         .HasColumnType("int");
-
-                    b.Property<string>("NomeEmpresa")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Salario")
                         .HasColumnType("decimal(18,2)");

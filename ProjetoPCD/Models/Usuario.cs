@@ -16,5 +16,6 @@ namespace ProjetoPCD.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public DateTime DataDeNascimento{ get; set; }
+        public List<Candidatura> Candidaturas { get; set; }
     }
 }

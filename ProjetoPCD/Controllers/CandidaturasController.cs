@@ -53,7 +53,7 @@ namespace ProjetoPCD.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id_Candidatura")] Candidatura candidatura)
+        public async Task<IActionResult> Create([Bind("id_Candidatura,NomeEmpresa,NomeCurso,NomeVaga,NomeUsuario,DataCandidatura")] Candidatura candidatura)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ProjetoPCD.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id_Candidatura")] Candidatura candidatura)
+        public async Task<IActionResult> Edit(int id, [Bind("id_Candidatura,NomeEmpresa,NomeCurso,NomeVaga,NomeUsuario,DataCandidatura")] Candidatura candidatura)
         {
             if (id != candidatura.id_Candidatura)
             {

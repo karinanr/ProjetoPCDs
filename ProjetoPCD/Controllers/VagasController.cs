@@ -53,7 +53,7 @@ namespace ProjetoPCD.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id_Vaga,Cargo,Salario,Descricao,Benefícios,CargaHoraria")] Vaga vaga)
+        public async Task<IActionResult> Create([Bind("id_Vaga,Cargo,Salario,Descricao,NomeEmpresa,Benefícios,CargaHoraria")] Vaga vaga)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ProjetoPCD.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id_Vaga,Cargo,Salario,Descricao,Benefícios,CargaHoraria")] Vaga vaga)
+        public async Task<IActionResult> Edit(int id, [Bind("id_Vaga,Cargo,Salario,Descricao,NomeEmpresa,Benefícios,CargaHoraria")] Vaga vaga)
         {
             if (id != vaga.id_Vaga)
             {
@@ -147,6 +147,11 @@ namespace ProjetoPCD.Controllers
         private bool VagaExists(int id)
         {
             return _context.Vagas.Any(e => e.id_Vaga == id);
+        }
+
+        public async Task<IActionResult> Vagas()
+        {
+            return View(await _context.Vagas.ToListAsync());
         }
     }
 }
